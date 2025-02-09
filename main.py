@@ -2,15 +2,14 @@ import requests
 
 
 def main():
-    urls = [
-        'https://wttr.in/london?MnTqu&lang=ru',
-        'https://wttr.in/svo?MnTqu&lang=ru',
-        'https://wttr.in/%D0%A7%D0%B5%D1%80%D0%B5%D0%BF%D0%BE%D0%B2%D1%86?MnTqu&lang=ru'
-        ]
-
-
-    for url in urls:
-        response = requests.get(url)
+    payload = {
+        "MnTq": " ",
+        "lang": "ru"
+        }
+    place = ["london", "svo", "Череповц"]
+    for urls in place:
+        url = (f'https://wttr.in/{urls}')
+        response = requests.get(url, params=payload)
         response.raise_for_status()
         print(response.text)
 
